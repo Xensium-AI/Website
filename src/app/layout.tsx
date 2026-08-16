@@ -12,10 +12,32 @@ const manrope = Manrope({
 
 const SITE_TITLE = "Xensium AI — The AI Voice Receptionist That Answers Every Business Call";
 
+/**
+ * Base URL used to resolve absolute Open Graph / social URLs.
+ *
+ * Prefers NEXT_PUBLIC_SITE_URL (set this to the real domain in the hosting
+ * environment), then Vercel's own per-deployment host, then localhost. The
+ * value is validated because a defined-but-blank or malformed variable would
+ * otherwise throw at build time.
+ */
+function resolveSiteUrl(): string {
+  const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (configured) {
+    try {
+      return new URL(configured).toString();
+    } catch {
+      // fall through to the defaults below rather than failing the build
+    }
+  }
+
+  const vercelHost = process.env.NEXT_PUBLIC_VERCEL_URL?.trim();
+  if (vercelHost) return `https://${vercelHost}`;
+
+  return "http://localhost:3000";
+}
+
 export const metadata: Metadata = {
-  // Set NEXT_PUBLIC_SITE_URL to the production domain at deploy time so
-  // Open Graph URLs resolve absolutely.
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  metadataBase: new URL(resolveSiteUrl()),
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
