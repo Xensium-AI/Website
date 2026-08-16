@@ -1,6 +1,6 @@
 /* ============================================================
    XENSIUM AI — design tokens
-   Source of truth: approved Claude Design export (XENSIUM_Homepage)
+   Source of truth: the approved XENSIUM AI homepage design
    ============================================================ */
 
 :root {
@@ -14,7 +14,6 @@
   --ink: #111827;
   --text-secondary: #667085;
   --text-tertiary: #98a2b3;
-  --text-faint: #b4bcc9;
   --text-slate: #4b5563;
   --text-steel: #42566b;
   --text-bubble-ai: #0c4a6e;

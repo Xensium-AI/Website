@@ -2,7 +2,7 @@
 
 Marketing website for **Xensium AI**, the AI voice receptionist that answers
 every business call. Built with Next.js (App Router) + TypeScript + CSS
-Modules, implementing the approved Claude Design homepage.
+Modules, implementing the approved XENSIUM AI homepage design.
 
 ## Getting started
 
@@ -38,6 +38,9 @@ Other placeholders:
   service/backend). The attachment field is UI-only; uploads are not sent.
 - **Footer legal links** — Privacy / Terms / Security point to `#` until real
   pages exist.
+- **`NEXT_PUBLIC_SITE_URL`** — set this environment variable to the production
+  domain at deploy time (e.g. `https://www.example.com`) so Open Graph URLs
+  resolve absolutely; it defaults to `http://localhost:3000`.
 
 ## Project structure
 

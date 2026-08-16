@@ -1,6 +1,6 @@
 /**
- * All homepage copy in one place, lifted from the approved Claude Design
- * export. Components render this data; edit copy here without touching UI.
+ * All homepage copy in one place, taken from the approved XENSIUM AI design.
+ * Components render this data; edit copy here without touching UI.
  */
 
 export const navLinks = [

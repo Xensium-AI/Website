@@ -132,6 +132,7 @@ export default function LiveCallDemo() {
           ↻ Replay
         </button>
       </div>
+      <div className={styles.demoNote}>Simulated conversation shown for demonstration.</div>
     </div>
   );
 }
