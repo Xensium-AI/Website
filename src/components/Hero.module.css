@@ -1,0 +1,169 @@
+.hero {
+  position: relative;
+  background: var(--bg);
+  overflow: hidden;
+  padding: 84px 0 96px;
+}
+
+.glow {
+  position: absolute;
+  top: -160px;
+  right: -120px;
+  width: 620px;
+  height: 620px;
+  background: radial-gradient(circle, rgba(41, 169, 232, 0.14), rgba(41, 169, 232, 0) 62%);
+  pointer-events: none;
+}
+
+.dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(17, 24, 39, 0.035) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: linear-gradient(180deg, #000, transparent 70%);
+  -webkit-mask-image: linear-gradient(180deg, #000, transparent 70%);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 56px;
+  align-items: center;
+}
+
+.copy {
+  flex: 1 1 470px;
+  min-width: 300px;
+  animation: heroIn 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--blue-tint);
+  border: 1px solid var(--border-blue);
+  color: var(--blue-deep);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 7px 13px;
+  border-radius: var(--r-pill);
+  margin-bottom: 24px;
+}
+
+.badgeDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--blue);
+  display: inline-block;
+  animation: pulse 1.8s ease-out infinite;
+}
+
+.title {
+  font-weight: 800;
+  font-size: clamp(38px, 5.3vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin: 0 0 22px;
+  text-wrap: balance;
+}
+
+.sub {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin: 0 0 32px;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.callBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 16px;
+  padding: 15px 22px;
+  border-radius: var(--r-btn);
+  border: 1px solid var(--border);
+  background: #fff;
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease;
+}
+
+.callBtn:hover {
+  color: var(--ink);
+  border-color: var(--blue);
+  background: var(--bg-hover-tint);
+}
+
+.callIcon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--blue-tint);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.callNow {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue-deep);
+  margin-bottom: 22px;
+}
+
+.callNow span {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.trust {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 0;
+}
+
+.trustItem {
+  display: inline-flex;
+  align-items: center;
+}
+
+.dotSep {
+  opacity: 0.5;
+  margin: 0 9px;
+}
+
+.demo {
+  flex: 1 1 430px;
+  min-width: 320px;
+  scroll-margin-top: 90px;
+}
+
+@media (max-width: 560px) {
+  .hero {
+    padding: 56px 0 72px;
+  }
+
+  .demo {
+    min-width: 0;
+  }
+}

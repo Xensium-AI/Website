@@ -1,0 +1,68 @@
+.section {
+  position: relative;
+  background: var(--dark);
+  overflow: hidden;
+  padding: 104px 0;
+  scroll-margin-top: 70px;
+}
+
+.glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(41, 169, 232, 0.2), transparent 62%);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  text-align: center;
+}
+
+.wave {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 26px;
+}
+
+.title {
+  font-weight: 800;
+  font-size: clamp(30px, 4.4vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--dark-text);
+  margin: 0 0 18px;
+  text-wrap: balance;
+}
+
+.sub {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--dark-text-secondary);
+  margin: 0 auto 32px;
+  max-width: 560px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+}
+
+.buttons :global(a:first-child) {
+  box-shadow: var(--shadow-cta-dark);
+}
+
+.phoneNote {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark-text-secondary);
+  margin-top: 18px;
+}

@@ -1,0 +1,53 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.mark {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--r-xs);
+  background: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 15px;
+  color: #fff;
+  box-shadow: var(--shadow-logo);
+}
+
+.wordmark {
+  font-weight: 800;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.ai {
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--blue);
+  margin-left: 5px;
+  vertical-align: 3px;
+  letter-spacing: 0.06em;
+}
+
+.dark .mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  font-size: 14px;
+  box-shadow: none;
+}
+
+.dark .wordmark {
+  font-size: 18px;
+  color: var(--dark-text);
+}
+
+.dark .ai {
+  font-size: 10px;
+  vertical-align: 2px;
+}

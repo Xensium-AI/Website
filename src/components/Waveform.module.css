@@ -1,0 +1,51 @@
+.wave {
+  display: flex;
+  align-items: flex-end;
+}
+
+.bar {
+  border-radius: 3px;
+  background: var(--blue);
+  animation: wave 1s ease-in-out infinite;
+}
+
+.demo {
+  gap: 3px;
+  height: 22px;
+}
+
+.demo .bar {
+  width: 3px;
+}
+
+.demo .accent {
+  background: var(--blue-deep);
+}
+
+.card {
+  gap: 2px;
+  height: 16px;
+}
+
+.card .bar {
+  width: 2.5px;
+  border-radius: 2px;
+}
+
+.card .accent {
+  background: var(--blue-deep);
+}
+
+.cta {
+  gap: 4px;
+  height: 38px;
+  justify-content: center;
+}
+
+.cta .bar {
+  width: 4px;
+}
+
+.cta .accent {
+  background: var(--blue-sky);
+}
