@@ -34,6 +34,7 @@ export default function Faq() {
                 <div
                   id={`faq-answer-${i}`}
                   className={`${styles.answerWrap} ${isOpen ? styles.answerOpen : ""}`}
+                  aria-hidden={!isOpen}
                 >
                   <div className={styles.answerClip}>
                     <div className={styles.answer}>{faq.a}</div>

@@ -99,12 +99,18 @@ export default function Contact() {
                   placeholder="Jane Doe"
                   value={name}
                   autoComplete="name"
+                  aria-invalid={errors.name || undefined}
+                  aria-describedby={errors.name ? "contact-name-error" : undefined}
                   onChange={(e) => {
                     setName(e.target.value);
                     setErrors((prev) => ({ ...prev, name: false }));
                   }}
                 />
-                {errors.name && <div className={styles.error}>Please enter your name.</div>}
+                {errors.name && (
+                  <div id="contact-name-error" className={styles.error} role="alert">
+                    Please enter your name.
+                  </div>
+                )}
               </div>
 
               <div className={styles.field}>
@@ -118,12 +124,18 @@ export default function Contact() {
                   placeholder="jane@company.com"
                   value={email}
                   autoComplete="email"
+                  aria-invalid={errors.email || undefined}
+                  aria-describedby={errors.email ? "contact-email-error" : undefined}
                   onChange={(e) => {
                     setEmail(e.target.value);
                     setErrors((prev) => ({ ...prev, email: false }));
                   }}
                 />
-                {errors.email && <div className={styles.error}>Please enter a valid email.</div>}
+                {errors.email && (
+                  <div id="contact-email-error" className={styles.error} role="alert">
+                    Please enter a valid email.
+                  </div>
+                )}
               </div>
 
               <div className={styles.field}>
@@ -136,12 +148,18 @@ export default function Contact() {
                   className={`${styles.input} ${styles.textarea} ${errors.message ? styles.inputError : ""}`}
                   placeholder="How do you handle calls today, and what would you want Xensium to help with?"
                   value={message}
+                  aria-invalid={errors.message || undefined}
+                  aria-describedby={errors.message ? "contact-message-error" : undefined}
                   onChange={(e) => {
                     setMessage(e.target.value);
                     setErrors((prev) => ({ ...prev, message: false }));
                   }}
                 />
-                {errors.message && <div className={styles.error}>Please add a short message.</div>}
+                {errors.message && (
+                  <div id="contact-message-error" className={styles.error} role="alert">
+                    Please add a short message.
+                  </div>
+                )}
               </div>
 
               <div className={styles.field}>

@@ -121,6 +121,32 @@ svg {
   scroll-margin-top: calc(var(--nav-height) + 16px);
 }
 
+/* ---------- accessibility helpers ---------- */
+
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.skipLink {
+  position: absolute;
+  left: 16px;
+  top: -48px;
+  z-index: 100;
+  background: var(--ink);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 0 0 10px 10px;
+  transition: top 0.15s ease;
+}
+
+.skipLink:focus-visible {
+  top: 0;
+  color: #fff;
+}
+
 /* ---------- shared layout ---------- */
 
 .container {

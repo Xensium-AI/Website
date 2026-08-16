@@ -17,8 +17,11 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <div style={{ overflowX: "hidden" }}>
+      <a href="#main" className="skipLink">
+        Skip to content
+      </a>
       <Header />
-      <main>
+      <main id="main">
         <Hero />
         <Marquee />
         <Problem />

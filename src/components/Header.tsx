@@ -5,10 +5,10 @@ import { AI_RECEPTIONIST_PHONE, CALENDAR_LINK } from "@/config/site";
 
 export default function Header() {
   return (
-    <nav className={styles.nav}>
+    <nav className={styles.nav} aria-label="Main">
       <div className={styles.inner}>
         <a href="#top" className={styles.logoLink} aria-label="Xensium AI — home">
-          <Logo />
+          <Logo collapseOnTiny />
         </a>
 
         <div className={styles.links}>
