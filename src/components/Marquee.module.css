@@ -75,3 +75,14 @@
     display: none;
   }
 }
+
+/* Keyframes must live in this module: CSS Modules scopes animation names,
+   so a globally-defined `marquee` would never resolve from here. */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

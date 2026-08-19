@@ -7,7 +7,6 @@ import SeeItInAction from "@/components/SeeItInAction";
 import Capabilities from "@/components/Capabilities";
 import CallFlow from "@/components/CallFlow";
 import HowItWorks from "@/components/HowItWorks";
-import Industries from "@/components/Industries";
 import Outcomes from "@/components/Outcomes";
 import Faq from "@/components/Faq";
 import FinalCta from "@/components/FinalCta";
@@ -30,7 +29,6 @@ export default function Home() {
         <Capabilities />
         <CallFlow />
         <HowItWorks />
-        <Industries />
         <Outcomes />
         <Faq />
         <FinalCta />

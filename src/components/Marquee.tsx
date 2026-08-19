@@ -3,7 +3,7 @@ import { marqueeCategories } from "@/content/site-content";
 
 export default function Marquee() {
   return (
-    <section className={styles.section} aria-label="Businesses that live and die by the phone">
+    <section id="industries" className={styles.section} aria-label="Businesses that live and die by the phone">
       <div className={`container ${styles.heading}`}>
         <h2 className={styles.title}>Built for businesses that live and die by the phone.</h2>
       </div>

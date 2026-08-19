@@ -194,15 +194,6 @@ export const howItWorks = [
   },
 ];
 
-export const industries = [
-  { icon: "🦷", title: "Healthcare & Dental", desc: "Answer patient calls, book and reschedule appointments, and handle after-hours triage messages." },
-  { icon: "🏠", title: "Real estate", desc: "Capture every property inquiry — even after hours — qualify buyers, and schedule agent callbacks." },
-  { icon: "🔧", title: "Home services", desc: "Turn incoming calls into booked jobs with the next available time slot, automatically." },
-  { icon: "⚖️", title: "Law firms", desc: "Pre-qualify potential clients and gather case details before a warm transfer to your team." },
-  { icon: "🚗", title: "Automotive", desc: "Book service appointments, quote availability, and route parts and sales calls to the right desk." },
-  { icon: "💇", title: "Salons & spas", desc: "Fill the calendar with bookings and manage reschedules while your team focuses on clients." },
-];
-
 export const outcomes = [
   { title: "More calls answered", desc: "Every ring is picked up — first-time, overflow, and after-hours calls that used to go to voicemail." },
   { title: "More leads captured", desc: "Details and intent are recorded on every call, so no opportunity slips through the cracks." },
