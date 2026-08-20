@@ -1,11 +1,11 @@
 .nav {
   position: sticky;
   top: 0;
-  z-index: 60;
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border);
+  z-index: 80;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  box-shadow: var(--shadow-header);
 }
 
 .inner {
@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 20px;
 }
 
 .logoLink {
@@ -27,19 +27,49 @@
 .links {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 6px;
   flex-wrap: nowrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .link {
+  display: block;
+  position: relative;
   color: var(--text-slate);
   font-size: 15px;
-  font-weight: 500;
-  transition: color 0.15s ease;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: var(--r-pill);
+  transition:
+    color 0.16s ease,
+    background 0.16s ease;
 }
 
 .link:hover {
   color: var(--ink);
+  background: var(--bg-hover-tint);
+}
+
+/* Active state uses colour + a filled pill + an underline bar, so it never
+   depends on colour alone. */
+.linkActive,
+.linkActive:hover {
+  color: #fff;
+  background: var(--blue-deep);
+}
+
+.linkActive::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -11px;
+  width: 22px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--blue);
 }
 
 .actions {
@@ -51,34 +81,24 @@
 .phone {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
   color: var(--ink);
   font-weight: 700;
   font-size: 14px;
-  padding: 9px 14px;
+  padding: 8px 14px;
   border-radius: 11px;
   border: 1px solid var(--border);
   background: #fff;
   transition:
     border-color 0.18s ease,
-    background 0.18s ease;
+    background 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
 .phone:hover {
   color: var(--ink);
   border-color: var(--blue);
   background: var(--bg-hover-tint);
-}
-
-.phoneIcon {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  background: var(--blue-tint);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
+  box-shadow: var(--shadow-cta-sm);
 }
 
 .phoneLabel {
@@ -90,7 +110,7 @@
 .phoneCaption {
   font-size: 11px;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--text-tertiary);
 }
 
 .phoneNumber {
@@ -103,60 +123,145 @@
 .demo {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: var(--blue);
+  background: var(--blue-grad);
   color: #fff;
   font-weight: 700;
   font-size: 14px;
-  padding: 12px 18px;
+  padding: 12px 20px;
   border-radius: 11px;
   box-shadow: var(--shadow-cta-sm);
   transition:
-    background 0.18s ease,
-    transform 0.18s ease;
+    filter 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
   white-space: nowrap;
 }
 
 .demo:hover {
   color: #fff;
-  background: var(--blue-hover);
+  filter: brightness(1.08);
   transform: translateY(-1px);
+  box-shadow: var(--shadow-cta);
+}
+
+.menuBtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.16s ease;
+}
+
+.menuBtn:hover {
+  border-color: var(--blue);
+}
+
+/* ---------- mobile menu ---------- */
+
+.mobileNav {
+  display: none;
+  border-top: 1px solid var(--border);
+  background: #fff;
+  padding: 14px var(--gutter) 20px;
+  box-shadow: var(--shadow-panel);
+}
+
+.mobileList {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobileLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-slate);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 13px 14px;
+  border-radius: var(--r-sm);
+}
+
+.mobileLink:hover {
+  color: var(--ink);
+  background: var(--bg-hover-tint);
+}
+
+.mobileLinkActive,
+.mobileLinkActive:hover {
+  color: #fff;
+  background: var(--blue-deep);
+}
+
+.activeDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--blue-sky);
+}
+
+.mobileCta {
+  display: block;
+  text-align: center;
+  background: var(--blue-grad);
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 14px;
+  border-radius: var(--r-btn);
+  box-shadow: var(--shadow-cta-sm);
+}
+
+.mobileCta:hover {
+  color: #fff;
+}
+
+.mobilePhone {
+  display: block;
+  text-align: center;
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--blue-ink);
 }
 
 @media (max-width: 1080px) {
   .links {
     display: none;
   }
+
+  .menuBtn {
+    display: inline-flex;
+  }
+
+  .mobileNav.mobileOpen {
+    display: block;
+  }
 }
 
-@media (max-width: 560px) {
-  .phoneLabel {
+@media (max-width: 620px) {
+  .phone {
     display: none;
   }
-
-  .inner {
-    padding: 0 20px;
-    gap: 12px;
-  }
 }
 
-/* keep the three header items comfortably inside small phones */
 @media (max-width: 430px) {
   .inner {
-    padding: 0 16px;
     gap: 10px;
-  }
-
-  .actions {
-    gap: 8px;
-  }
-
-  .phone {
-    padding: 8px 10px;
   }
 
   .demo {
     font-size: 13px;
-    padding: 10px 12px;
+    padding: 11px 14px;
   }
 }

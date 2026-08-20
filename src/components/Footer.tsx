@@ -1,7 +1,7 @@
 import styles from "./Footer.module.css";
 import Logo from "./Logo";
 import { footerColumns } from "@/content/site-content";
-import { CALENDAR_LINK } from "@/config/site";
+import { CAL_COM_BOOKING_URL } from "@/config/site";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -25,8 +25,11 @@ export default function Footer() {
                 {column.links.map((link) => (
                   <a
                     key={link.label}
-                    href={link.href === "CALENDAR" ? CALENDAR_LINK : link.href}
+                    href={link.href === "BOOKING" ? CAL_COM_BOOKING_URL : link.href}
                     className={styles.link}
+                    {...(link.href === "BOOKING"
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
                   >
                     {link.label}
                   </a>

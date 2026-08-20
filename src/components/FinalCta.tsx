@@ -1,7 +1,7 @@
 import styles from "./FinalCta.module.css";
 import Waveform from "./Waveform";
 import CtaButton from "./CtaButton";
-import { AI_RECEPTIONIST_PHONE, CALENDAR_LINK } from "@/config/site";
+import { AI_RECEPTIONIST_PHONE, CAL_COM_BOOKING_URL } from "@/config/site";
 
 export default function FinalCta() {
   return (
@@ -17,10 +17,10 @@ export default function FinalCta() {
           whenever they call.
         </p>
         <div className={styles.buttons}>
-          <CtaButton href={AI_RECEPTIONIST_PHONE.href} variant="primary" icon="📞">
+          <CtaButton href={AI_RECEPTIONIST_PHONE.href} variant="primary">
             Call our AI receptionist
           </CtaButton>
-          <CtaButton href={CALENDAR_LINK} variant="outlineDark" icon="📅">
+          <CtaButton href={CAL_COM_BOOKING_URL} variant="outlineDark" external>
             Book a Demo
           </CtaButton>
         </div>

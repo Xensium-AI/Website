@@ -3,17 +3,24 @@
  * Components render this data; edit copy here without touching UI.
  */
 
+import type { IconName } from "@/components/Icon";
+
+/** Nav items. `id` is the section each link targets and scroll-spy watches. */
 export const navLinks = [
-  { label: "Product", href: "#capabilities" },
-  { label: "Solutions", href: "#industries" },
-  { label: "Industries", href: "#industries" },
-  { label: "Resources", href: "#faq" },
+  { label: "Product", href: "#product", id: "product" },
+  { label: "Solutions", href: "#solutions", id: "solutions" },
+  { label: "Features", href: "#features", id: "features" },
+  { label: "Results", href: "#results", id: "results" },
+  { label: "FAQs", href: "#faq", id: "faq" },
 ];
 
-export const heroTrustPoints = [
-  "Answers in <1 ring",
-  "Handles simultaneous calls",
-  "Works after hours",
+export const heroSubcopy =
+  "Our AI Receptionist picks up every call, books appointments, and captures leads 24/7. It sounds human. It never calls in sick. And it pays for itself in the first month, or you don't pay at all.";
+
+export const heroProofPoints = [
+  "Live in 14 days, we do all the work",
+  "Books straight into your calendar",
+  "First month free if it doesn't book appointments",
 ];
 
 export const marqueeCategories = [
@@ -65,71 +72,43 @@ export const solutionCards = [
   },
 ];
 
+/* ---------------------------------------------------------------------------
+   Hero transcript — one generic caller/receptionist flow (no niche tabs).
+   Order: greeting → services + appointment → services explained → name &
+   number → availability → slot chosen → scheduled + confirmation sent.
+--------------------------------------------------------------------------- */
+
 export type CallTurn = { who: "ai" | "caller"; text: string };
 
-export type CallScenario = {
-  caller: string;
-  title: string;
-  turns: CallTurn[];
-  actions: string[];
-};
+export const callerLabel = "Incoming call · New caller";
 
-export const callScenarios: Record<string, CallScenario> = {
-  health: {
-    caller: "Incoming call · New patient",
-    title: "Booking a dental appointment",
-    turns: [
-      { who: "ai", text: "Thanks for calling Brightpath Dental — this is the front desk. How can I help?" },
-      { who: "caller", text: "Hi, I'd like to book a cleaning sometime this week." },
-      { who: "ai", text: "Of course. I have Thursday at 10:30 AM or Friday at 2:00 PM. Which works better?" },
-      { who: "caller", text: "Thursday at 10:30 works." },
-      { who: "ai", text: "Perfect — you're booked for Thursday at 10:30. Can I grab your name and number to confirm?" },
-    ],
-    actions: ["Appointment booked · Thu 10:30 AM", "Patient details captured", "Confirmation text sent"],
-  },
-  realestate: {
-    caller: "Incoming call · After hours",
-    title: "After-hours property inquiry",
-    turns: [
-      { who: "ai", text: "Thanks for calling Meridian Realty. I can help even though the office is closed — what are you looking for?" },
-      { who: "caller", text: "I saw the listing on Oak Street. Is it still available?" },
-      { who: "ai", text: "It is. Are you looking to buy or rent, and what's your ideal move-in timing?" },
-      { who: "caller", text: "Buying, hopefully within two months." },
-      { who: "ai", text: "Great — I'll have an agent call you first thing tomorrow. What's the best number?" },
-    ],
-    actions: ["Lead captured & qualified", "Agent callback scheduled · 9:00 AM", "Listing details emailed"],
-  },
-  home: {
-    caller: "Incoming call · New job",
-    title: "Booking a home service",
-    turns: [
-      { who: "ai", text: "Thanks for calling Summit Plumbing — how can I help today?" },
-      { who: "caller", text: "My kitchen sink is leaking pretty badly." },
-      { who: "ai", text: "Sorry to hear that. We can send a technician tomorrow between 8–10 AM or 1–3 PM. Which window works?" },
-      { who: "caller", text: "The morning is better." },
-      { who: "ai", text: "Booked for 8–10 AM tomorrow. I'll text you the technician's name and a confirmation." },
-    ],
-    actions: ["Job booked · Tomorrow 8–10 AM", "Address & issue captured", "Technician assigned"],
-  },
-  law: {
-    caller: "Incoming call · Potential client",
-    title: "Qualifying a new client",
-    turns: [
-      { who: "ai", text: "Thank you for calling Harbor & Lane. Are you calling about a new matter?" },
-      { who: "caller", text: "Yes, I was in a car accident last week." },
-      { who: "ai", text: "I'm sorry to hear that. Was anyone injured, and has an insurance claim been filed yet?" },
-      { who: "caller", text: "I have a minor injury, no claim yet." },
-      { who: "ai", text: "Understood. I'll connect you with our personal-injury team and share your details so you don't repeat yourself." },
-    ],
-    actions: ["Client pre-qualified", "Case details captured", "Warm transfer to PI team"],
-  },
-};
+export const conversationTitle = "Booking an appointment";
 
-export const scenarioPills = [
-  { key: "health", label: "Healthcare" },
-  { key: "realestate", label: "Real estate" },
-  { key: "home", label: "Home services" },
-  { key: "law", label: "Law firms" },
+export const conversation: CallTurn[] = [
+  { who: "ai", text: "Thank you for calling [Business Name]. How can I help you today?" },
+  { who: "caller", text: "Hi, I'd like to learn about your services and book an appointment." },
+  {
+    who: "ai",
+    text: "Absolutely. We offer [Service A], [Service B], and [Service C]. Which service are you interested in?",
+  },
+  { who: "caller", text: "Service A." },
+  { who: "ai", text: "Great. May I have your name and the best phone number for the booking?" },
+  { who: "caller", text: "Jordan. I'll provide my mobile number." },
+  {
+    who: "ai",
+    text: "Thanks, Jordan. I have Tuesday at 10:30 AM or Wednesday at 2:00 PM. Which works better?",
+  },
+  { who: "caller", text: "Wednesday at 2:00 PM." },
+  {
+    who: "ai",
+    text: "Perfect—you're scheduled for Wednesday at 2:00 PM. Your confirmation is on its way.",
+  },
+];
+
+export const conversationOutcomes = [
+  "Appointment booked · Wed 2:00 PM",
+  "Caller details captured",
+  "Calendar invite & text confirmation sent",
 ];
 
 export const actionExamples = [
@@ -159,46 +138,88 @@ export const actionExamples = [
   },
 ];
 
-export const capabilities = [
-  { icon: "📞", title: "Answer & greet", desc: "Picks up on the first ring with your custom greeting — every time, day or night." },
-  { icon: "💬", title: "Answer FAQs", desc: "Hours, location, pricing, services — answered instantly from your business details." },
-  { icon: "🎯", title: "Qualify leads", desc: "Asks the right questions and captures intent so only real opportunities reach your team." },
-  { icon: "📅", title: "Book & reschedule", desc: "Checks availability and books, moves, or cancels appointments in your calendar." },
-  { icon: "📝", title: "Capture details", desc: "Records names, numbers, and reasons for calling — logged and ready for follow-up." },
-  { icon: "↗️", title: "Transfer & escalate", desc: "Warm-transfers urgent calls to the right person, with context already gathered." },
+export const capabilities: { icon: IconName; title: string; desc: string }[] = [
+  {
+    icon: "phone",
+    title: "Answer & greet",
+    desc: "Picks up on the first ring with your custom greeting — every time, day or night.",
+  },
+  {
+    icon: "chat",
+    title: "Answer FAQs",
+    desc: "Hours, location, pricing, services — answered instantly from your business details.",
+  },
+  {
+    icon: "target",
+    title: "Qualify leads",
+    desc: "Asks the right questions and captures intent so only real opportunities reach your team.",
+  },
+  {
+    icon: "calendar",
+    title: "Book & reschedule",
+    desc: "Checks availability and books, moves, or cancels appointments in your calendar.",
+  },
+  {
+    icon: "clipboard",
+    title: "Capture details",
+    desc: "Records names, numbers, and reasons for calling — logged and ready for follow-up.",
+  },
+  {
+    icon: "transfer",
+    title: "Transfer & escalate",
+    desc: "Warm-transfers urgent calls to the right person, with context already gathered.",
+  },
 ];
 
-export const callFlow = [
-  { n: "01", title: "Incoming call", desc: "A customer calls your business line — new lead or regular." },
-  { n: "02", title: "Answers instantly", desc: "Xensium picks up in under a ring with your greeting." },
-  { n: "03", title: "Understands intent", desc: "Natural conversation uncovers what the caller needs." },
-  { n: "04", title: "Takes action", desc: "Books, qualifies, captures, or transfers — right then." },
-  { n: "05", title: "Confirms & logs", desc: "Sends confirmation and logs everything for your team." },
-];
+export const howItWorksIntro =
+  "You don't learn new software. You don't change how you work. We build everything, train the AI on your business, and flip the switch.";
 
 export const howItWorks = [
   {
     n: "1",
-    title: "Tell us how your front desk works",
-    desc: "Share your greeting, hours, services, FAQs, and how you like calls handled. No technical setup.",
+    range: "Days 1–2",
+    title: "One short call",
+    desc: "Tell us about your business, services, hours, and the questions callers ask. That's all we need from you.",
   },
   {
     n: "2",
-    title: "We build your receptionist",
-    desc: "We configure Xensium to your workflows, voice, and calendar — then test it with you until it sounds right.",
+    range: "Days 3–10",
+    title: "We build & train your AI Receptionist",
+    desc: "We give it a natural voice, teach it your services, pricing, and policies, and connect it to your calendar. We handle the setup.",
   },
   {
     n: "3",
-    title: "Forward your calls, go live",
-    desc: "Point your number at Xensium whenever you want — after hours, overflow, or 24/7. Change it anytime.",
+    range: "By day 14",
+    title: "Go live & start recovering revenue",
+    desc: "Every call gets answered from day one. Appointments get booked, leads get captured, and your team gets the details.",
   },
 ];
 
-export const outcomes = [
-  { title: "More calls answered", desc: "Every ring is picked up — first-time, overflow, and after-hours calls that used to go to voicemail." },
-  { title: "More leads captured", desc: "Details and intent are recorded on every call, so no opportunity slips through the cracks." },
-  { title: "More appointments booked", desc: "Callers book in the moment instead of waiting for a callback that may never happen." },
-  { title: "Less front-desk load", desc: "Routine questions and scheduling are handled automatically, freeing your team for walk-ins." },
+/**
+ * Results metrics. Deliberately limited to claims already supported in this
+ * project — no invented financial figures. The fourth card stays qualitative.
+ */
+export const results = [
+  {
+    metric: "100%",
+    title: "Calls answered",
+    desc: "Calls routed to Xensium are answered; no more voicemail or lost callers.",
+  },
+  {
+    metric: "<2s",
+    title: "Pickup time",
+    desc: "Fast pickup without hold queues, even during a rush.",
+  },
+  {
+    metric: "24/7",
+    title: "Always covered",
+    desc: "Coverage across nights, weekends, and holidays.",
+  },
+  {
+    metric: "More",
+    title: "Bookings",
+    desc: "Callers can choose an available slot before hanging up.",
+  },
 ];
 
 export const faqs = [
@@ -220,7 +241,7 @@ export const faqs = [
   },
   {
     q: "How long does setup take?",
-    a: "Most businesses go live within days. You share how your front desk works, we configure and test it with you, then you forward your calls.",
+    a: "Most businesses go live within 14 days. You share how your front desk works, we configure and test it with you, then you forward your calls.",
   },
   {
     q: "Is my data secure?",
@@ -232,19 +253,19 @@ export const footerColumns = [
   {
     heading: "Product",
     links: [
-      { label: "Capabilities", href: "#capabilities" },
+      { label: "Product", href: "#product" },
+      { label: "Features", href: "#features" },
       { label: "Live demo", href: "#live" },
-      { label: "Book a demo", href: "CALENDAR" },
-      { label: "Industries", href: "#industries" },
+      { label: "Book a demo", href: "BOOKING" },
     ],
   },
   {
     heading: "Company",
     links: [
-      { label: "About", href: "#top" },
+      { label: "Solutions", href: "#solutions" },
+      { label: "Results", href: "#results" },
       { label: "Contact", href: "#contact" },
-      { label: "FAQ", href: "#faq" },
-      { label: "Book a demo", href: "CALENDAR" },
+      { label: "FAQs", href: "#faq" },
     ],
   },
   {

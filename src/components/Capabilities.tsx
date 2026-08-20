@@ -1,25 +1,30 @@
 import styles from "./Capabilities.module.css";
+import Icon from "./Icon";
 import { capabilities } from "@/content/site-content";
 
 export default function Capabilities() {
   return (
-    <section id="capabilities" className={styles.section}>
+    <section id="features" className={styles.section}>
       <div className="container">
         <div className={styles.intro}>
           <div className="eyebrow">What Xensium can do</div>
           <h2 className="sectionTitle">A full front desk, handled on every call.</h2>
+          <p className="sectionSub">
+            Every capability below runs on the same call — no menus, no hold music, no handoffs
+            your caller has to repeat themselves through.
+          </p>
         </div>
-        <div className={styles.grid}>
+        <ul className={styles.grid}>
           {capabilities.map((cap) => (
-            <div key={cap.title} className={styles.card}>
-              <div className={styles.icon} aria-hidden="true">
-                {cap.icon}
-              </div>
-              <div className={styles.cardTitle}>{cap.title}</div>
+            <li key={cap.title} className={styles.card}>
+              <span className={styles.icon}>
+                <Icon name={cap.icon} size={22} />
+              </span>
+              <h3 className={styles.cardTitle}>{cap.title}</h3>
               <p className={styles.cardDesc}>{cap.desc}</p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

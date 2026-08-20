@@ -231,7 +231,7 @@
 
 .submit {
   width: 100%;
-  background: var(--blue);
+  background: var(--blue-grad);
   color: #fff;
   font-weight: 700;
   font-size: 16px;
@@ -240,11 +240,13 @@
   border-radius: var(--r-btn);
   cursor: pointer;
   box-shadow: var(--shadow-cta);
-  transition: background 0.18s ease;
+  transition:
+    filter 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
 .submit:hover {
-  background: var(--blue-hover);
+  filter: brightness(1.08);
 }
 
 .privacy {

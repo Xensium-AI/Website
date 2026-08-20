@@ -1,55 +1,152 @@
 .section {
-  background: var(--blue-tint);
-  padding: 96px 0;
-  border-top: 1px solid var(--border-blue);
-  border-bottom: 1px solid var(--border-blue);
+  background: var(--bg-light);
+  padding: var(--section-y) 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .intro {
-  max-width: 680px;
-  margin-bottom: 48px;
+  max-width: 720px;
+  margin-bottom: 56px;
 }
 
-.grid {
+/* Desktop: one continuous timeline across three steps. */
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  position: relative;
+}
+
+.step {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-direction: column;
 }
 
-.card {
-  flex: 1 1 300px;
-  min-width: 270px;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  padding: 30px;
+/* the connecting rail */
+.step::after {
+  content: "";
+  position: absolute;
+  top: 25px;
+  left: calc(50% + 34px);
+  right: -24px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--blue) 0%, var(--border-strong) 100%);
+}
+
+.step:last-child::after {
+  display: none;
+}
+
+.marker {
+  display: flex;
+  align-items: center;
+  margin-bottom: 22px;
 }
 
 .num {
-  width: 46px;
-  height: 46px;
-  border-radius: var(--r-sm);
-  background: var(--dark);
-  color: var(--blue-sky);
+  width: 50px;
+  height: 50px;
+  border-radius: var(--r-md);
+  background: var(--blue-grad);
+  color: #fff;
   font-weight: 800;
-  font-size: 18px;
+  font-size: 19px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 18px;
+  box-shadow: var(--shadow-cta-sm);
 }
 
-.cardTitle {
-  font-weight: 700;
+.body {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 26px 24px 24px;
+  box-shadow: var(--shadow-card);
+  flex: 1;
+}
+
+.range {
+  display: inline-block;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue-ink);
+  background: var(--blue-tint);
+  border: 1px solid var(--border-blue);
+  padding: 5px 11px;
+  border-radius: var(--r-pill);
+  margin-bottom: 14px;
+}
+
+.stepTitle {
+  font-weight: 800;
   font-size: 19px;
-  margin-bottom: 9px;
-  line-height: 1.2;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  margin: 0 0 9px;
   color: var(--ink);
 }
 
-.cardDesc {
+.stepDesc {
   font-size: 15px;
-  line-height: 1.55;
+  line-height: 1.58;
   color: var(--text-secondary);
   margin: 0;
+}
+
+/* Tablet / mobile: stacked cards, rail runs down the left. */
+@media (max-width: 900px) {
+  .timeline {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .step {
+    flex-direction: row;
+    gap: 18px;
+    align-items: stretch;
+  }
+
+  .step::after {
+    top: 50px;
+    bottom: -18px;
+    left: 25px;
+    right: auto;
+    width: 2px;
+    height: auto;
+    background: linear-gradient(180deg, var(--blue) 0%, var(--border-strong) 100%);
+  }
+
+  .marker {
+    margin-bottom: 0;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .step {
+    gap: 14px;
+  }
+
+  .num {
+    width: 42px;
+    height: 42px;
+    font-size: 17px;
+  }
+
+  .step::after {
+    top: 42px;
+    left: 21px;
+  }
+
+  .body {
+    padding: 20px 18px;
+  }
 }

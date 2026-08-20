@@ -1,8 +1,8 @@
 /**
  * Central site configuration.
  *
- * Every phone / calendar CTA on the site reads from this file, so when the
- * real AI receptionist number and booking calendar are ready they can be
+ * Every phone / booking CTA on the site reads from this file, so when the
+ * real AI receptionist number and Cal.com calendar are ready they can be
  * swapped in here — no component changes required.
  */
 
@@ -15,10 +15,20 @@ export const AI_RECEPTIONIST_PHONE = {
 };
 
 /**
- * PLACEHOLDER — replace with the real scheduling URL (e.g. Calendly/Cal.com).
- * Until then, "Book a Demo" scrolls to the contact form so the CTA stays useful.
+ * PLACEHOLDER — the real Cal.com scheduling link is NOT yet configured.
+ *
+ * No booking URL exists anywhere in this repository or its environment, so
+ * this is an obvious placeholder that must be supplied before launch. Every
+ * "Book a Demo" CTA opens this URL directly (new tab) rather than scrolling
+ * to the contact form.
+ *
+ * Replace with the real link, e.g. "https://cal.com/xensium/demo".
  */
-export const CALENDAR_LINK = "#contact";
+export const CAL_COM_BOOKING_URL = "https://cal.com/CAL_COM_BOOKING_URL_PLACEHOLDER";
+
+/** True while the booking URL is still the unconfigured placeholder. */
+export const IS_BOOKING_URL_PLACEHOLDER =
+  CAL_COM_BOOKING_URL.includes("CAL_COM_BOOKING_URL_PLACEHOLDER");
 
 export const SITE_NAME = "Xensium AI";
 

@@ -1,23 +1,30 @@
 import styles from "./HowItWorks.module.css";
-import { howItWorks } from "@/content/site-content";
+import { howItWorks, howItWorksIntro } from "@/content/site-content";
 
 export default function HowItWorks() {
   return (
-    <section className={styles.section}>
+    <section id="how-it-works" className={styles.section}>
       <div className="container">
         <div className={styles.intro}>
           <div className="eyebrow">How it works</div>
-          <h2 className="sectionTitle">Live in days — no technical setup.</h2>
+          <h2 className="sectionTitle">Live within 14 days - no technical setup.</h2>
+          <p className="sectionSub">{howItWorksIntro}</p>
         </div>
-        <div className={styles.grid}>
+
+        <ol className={styles.timeline}>
           {howItWorks.map((step) => (
-            <div key={step.n} className={styles.card}>
-              <div className={styles.num}>{step.n}</div>
-              <div className={styles.cardTitle}>{step.title}</div>
-              <p className={styles.cardDesc}>{step.desc}</p>
-            </div>
+            <li key={step.n} className={styles.step}>
+              <div className={styles.marker}>
+                <span className={styles.num}>{step.n}</span>
+              </div>
+              <div className={styles.body}>
+                <span className={styles.range}>{step.range}</span>
+                <h3 className={styles.stepTitle}>{step.title}</h3>
+                <p className={styles.stepDesc}>{step.desc}</p>
+              </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

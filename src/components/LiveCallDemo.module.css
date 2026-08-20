@@ -11,17 +11,20 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 16px 20px;
+  padding: 15px 20px;
   border-bottom: 1px solid var(--border-soft);
+  background: linear-gradient(180deg, #fbfdff, #ffffff);
 }
 
 .status {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
+  min-width: 0;
 }
 
 .liveDot {
+  flex: none;
   width: 9px;
   height: 9px;
   border-radius: 50%;
@@ -29,11 +32,26 @@
   animation: pulse 1.8s ease-out infinite;
 }
 
+.liveTag {
+  flex: none;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue-ink);
+  background: var(--blue-tint);
+  border: 1px solid var(--border-blue);
+  padding: 3px 8px;
+  border-radius: var(--r-pill);
+}
+
 .callerLabel {
   font-size: 12.5px;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--text-secondary);
+  color: var(--text-tertiary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .transcript {
@@ -41,13 +59,26 @@
   display: flex;
   flex-direction: column;
   gap: 11px;
-  min-height: 296px;
+  min-height: 300px;
+  max-height: 360px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
   background: var(--bg-lightest);
+}
+
+.transcript::-webkit-scrollbar {
+  width: 6px;
+}
+
+.transcript::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
 }
 
 .sceneTitle {
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-tertiary);
@@ -66,7 +97,7 @@
   width: 28px;
   height: 28px;
   border-radius: 8px;
-  background: var(--blue);
+  background: var(--blue-grad);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,14 +107,15 @@
 }
 
 .aiBody {
-  max-width: 80%;
+  max-width: 82%;
 }
 
 .aiName {
   font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--blue-deep);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--blue-ink);
   margin: 2px 0 4px;
 }
 
@@ -104,13 +136,14 @@
 }
 
 .callerBody {
-  max-width: 80%;
+  max-width: 82%;
 }
 
 .callerName {
   font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   color: var(--text-tertiary);
   margin: 2px 0 4px;
   text-align: right;
@@ -143,7 +176,7 @@
   justify-content: center;
   font-weight: 800;
   font-size: 12px;
-  color: var(--blue);
+  color: var(--blue-ink);
 }
 
 .typingBubble {
@@ -158,7 +191,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--blue);
+  background: var(--blue-deep);
   animation: blink 1.2s infinite;
 }
 
@@ -171,25 +204,25 @@
 }
 
 .actions {
-  padding: 14px 20px 18px;
+  padding: 14px 20px 16px;
   border-top: 1px solid var(--border-soft);
   display: flex;
   flex-direction: column;
   gap: 8px;
-  background: var(--bg-hover-tint);
+  background: var(--success-tint);
 }
 
 .actionChip {
   display: flex;
   align-items: center;
   gap: 9px;
-  background: var(--blue-tint);
-  border: 1px solid var(--border-blue);
+  background: #fff;
+  border: 1px solid #bfe3d3;
   border-radius: var(--r-xs);
   padding: 9px 12px;
   font-size: 13.5px;
-  font-weight: 600;
-  color: var(--text-bubble-ai);
+  font-weight: 700;
+  color: #0b5f43;
   animation: pop 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
@@ -203,8 +236,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
-  font-weight: 700;
 }
 
 .footer {
@@ -212,70 +243,35 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding: 13px 20px;
+  padding: 12px 20px;
   border-top: 1px solid var(--border-soft);
   flex-wrap: wrap;
   background: #fff;
 }
 
-.pills {
-  display: flex;
-  gap: 7px;
-  flex-wrap: wrap;
-}
-
-.pill,
-.pillActive {
-  border-radius: var(--r-pill);
-  padding: 6px 12px;
-  font-size: 12.5px;
-  cursor: pointer;
-  transition:
-    background 0.15s ease,
-    color 0.15s ease,
-    border-color 0.15s ease;
-}
-
-.pill {
-  background: var(--bubble-caller);
-  color: #475467;
-  border: 1px solid var(--border);
+.footerNote {
+  font-size: 11.5px;
   font-weight: 500;
-}
-
-.pill:hover {
-  border-color: var(--blue);
-  color: var(--ink);
-}
-
-.pillActive {
-  background: var(--blue);
-  color: #fff;
-  border: 1px solid transparent;
-  font-weight: 600;
+  color: var(--text-tertiary);
 }
 
 .replay {
   background: none;
   border: none;
-  color: var(--text-secondary);
+  color: var(--blue-ink);
   font-size: 12.5px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  padding: 4px;
-  transition: color 0.15s ease;
+  padding: 6px 8px;
+  border-radius: var(--r-xs);
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
 }
 
 .replay:hover {
-  color: var(--blue-deep);
-}
-
-.demoNote {
-  padding: 0 20px 12px;
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--text-tertiary);
-  background: #fff;
+  color: var(--blue-ink-strong);
+  background: var(--bg-hover-tint);
 }
 
 /* Scoped alongside their usage — CSS Modules rewrites animation names. */

@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import styles from "./Contact.module.css";
-import { AI_RECEPTIONIST_PHONE, CALENDAR_LINK } from "@/config/site";
+import { AI_RECEPTIONIST_PHONE, CAL_COM_BOOKING_URL } from "@/config/site";
 
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
@@ -60,7 +60,7 @@ export default function Contact() {
                 <span className={styles.channelValue}>{AI_RECEPTIONIST_PHONE.display}</span>
               </span>
             </a>
-            <a href={CALENDAR_LINK} className={styles.channel}>
+            <a href={CAL_COM_BOOKING_URL} target="_blank" rel="noopener noreferrer" className={styles.channel}>
               <span className={styles.channelIcon} aria-hidden="true">
                 📅
               </span>

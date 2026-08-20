@@ -1,8 +1,6 @@
 import styles from "./SeeItInAction.module.css";
 import Waveform from "./Waveform";
-import CtaButton from "./CtaButton";
 import { actionExamples } from "@/content/site-content";
-import { AI_RECEPTIONIST_PHONE, CALENDAR_LINK } from "@/config/site";
 
 export default function SeeItInAction() {
   return (
@@ -44,18 +42,6 @@ export default function SeeItInAction() {
         </div>
 
         <div className={styles.disclaimer}>Example conversations shown for demonstration purposes.</div>
-
-        <div className={styles.ctaRow}>
-          <span className={styles.ctaLabel}>Want to hear it yourself?</span>
-          <div className={styles.ctaButtons}>
-            <CtaButton href={AI_RECEPTIONIST_PHONE.href} variant="primary" size="md" icon="📞">
-              Call our AI receptionist
-            </CtaButton>
-            <CtaButton href={CALENDAR_LINK} variant="outline" size="md" icon="📅">
-              Book a Demo
-            </CtaButton>
-          </div>
-        </div>
       </div>
     </section>
   );

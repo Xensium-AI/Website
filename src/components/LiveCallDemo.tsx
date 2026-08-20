@@ -3,71 +3,83 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./LiveCallDemo.module.css";
 import Waveform from "./Waveform";
-import { callScenarios, scenarioPills } from "@/content/site-content";
+import Icon from "./Icon";
+import {
+  callerLabel,
+  conversation,
+  conversationOutcomes,
+  conversationTitle,
+} from "@/content/site-content";
 
-const TURN_PACE_MS = 1500;
-const FIRST_TURN_DELAY_MS = 650;
+const TURN_PACE_MS = 1400;
+const FIRST_TURN_DELAY_MS = 500;
 
 /**
- * Animated caller ↔ AI receptionist conversation, ported from the approved
- * design: turns appear one by one with a typing indicator, then the
- * "actions taken" chips pop in. Industry pills switch the scenario.
+ * Animated caller ↔ AI receptionist transcript.
+ *
+ * Renders the complete conversation on the server so it is meaningful with
+ * JavaScript disabled; once hydrated (and unless the reader prefers reduced
+ * motion) it replays the turns one at a time.
  */
 export default function LiveCallDemo() {
-  const [industry, setIndustry] = useState("health");
-  const [step, setStep] = useState(0);
-  const [showActions, setShowActions] = useState(false);
+  const [step, setStep] = useState(conversation.length);
+  const [showOutcome, setShowOutcome] = useState(true);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const transcriptRef = useRef<HTMLDivElement>(null);
 
   const clearTimers = () => {
     timers.current.forEach(clearTimeout);
     timers.current = [];
   };
 
-  const play = useCallback((key: string) => {
+  const play = useCallback(() => {
     clearTimers();
-    const turns = callScenarios[key].turns;
-
     const reducedMotion =
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reducedMotion) {
-      setStep(turns.length);
-      setShowActions(true);
+      setStep(conversation.length);
+      setShowOutcome(true);
       return;
     }
 
     setStep(0);
-    setShowActions(false);
+    setShowOutcome(false);
     let t = FIRST_TURN_DELAY_MS;
-    turns.forEach((_, i) => {
+    conversation.forEach((_, i) => {
       timers.current.push(setTimeout(() => setStep(i + 1), t));
       t += TURN_PACE_MS;
     });
-    timers.current.push(setTimeout(() => setShowActions(true), t + 250));
+    timers.current.push(setTimeout(() => setShowOutcome(true), t + 200));
   }, []);
 
   useEffect(() => {
-    play(industry);
+    play();
     return clearTimers;
-  }, [industry, play]);
+  }, [play]);
 
-  const scenario = callScenarios[industry];
-  const visibleTurns = scenario.turns.slice(0, step);
-  const typingIsAI = step < scenario.turns.length && scenario.turns[step].who === "ai";
+  // Follow the conversation as new turns appear.
+  useEffect(() => {
+    const el = transcriptRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [step, showOutcome]);
+
+  const visibleTurns = conversation.slice(0, step);
+  const typingIsAI = step < conversation.length && conversation[step].who === "ai";
 
   return (
     <div className={styles.card}>
       <div className={styles.header}>
         <div className={styles.status}>
           <span className={styles.liveDot} aria-hidden="true" />
-          <span className={styles.callerLabel}>{scenario.caller}</span>
+          <span className={styles.liveTag}>Live</span>
+          <span className={styles.callerLabel}>{callerLabel}</span>
         </div>
         <Waveform preset="demo" />
       </div>
 
-      <div className={styles.transcript} aria-live="polite">
-        <div className={styles.sceneTitle}>{scenario.title}</div>
+      <div className={styles.transcript} ref={transcriptRef} aria-live="polite">
+        <div className={styles.sceneTitle}>{conversationTitle}</div>
         {visibleTurns.map((turn, i) =>
           turn.who === "ai" ? (
             <div key={i} className={styles.aiTurn}>
@@ -75,7 +87,7 @@ export default function LiveCallDemo() {
                 Xe
               </span>
               <div className={styles.aiBody}>
-                <div className={styles.aiName}>XENSIUM AI</div>
+                <div className={styles.aiName}>AI Receptionist</div>
                 <div className={styles.aiBubble}>{turn.text}</div>
               </div>
             </div>
@@ -102,37 +114,25 @@ export default function LiveCallDemo() {
         )}
       </div>
 
-      {showActions && (
+      {showOutcome && (
         <div className={styles.actions}>
-          {scenario.actions.map((action, i) => (
-            <div key={action} className={styles.actionChip} style={{ animationDelay: `${i * 110}ms` }}>
-              <span className={styles.check} aria-hidden="true">
-                ✓
+          {conversationOutcomes.map((outcome, i) => (
+            <div key={outcome} className={styles.actionChip} style={{ animationDelay: `${i * 110}ms` }}>
+              <span className={styles.check}>
+                <Icon name="check" size={12} />
               </span>
-              <span>{action}</span>
+              <span>{outcome}</span>
             </div>
           ))}
         </div>
       )}
 
       <div className={styles.footer}>
-        <div className={styles.pills}>
-          {scenarioPills.map((pill) => (
-            <button
-              key={pill.key}
-              type="button"
-              onClick={() => (pill.key === industry ? play(industry) : setIndustry(pill.key))}
-              className={pill.key === industry ? styles.pillActive : styles.pill}
-            >
-              {pill.label}
-            </button>
-          ))}
-        </div>
-        <button type="button" onClick={() => play(industry)} className={styles.replay}>
+        <span className={styles.footerNote}>Simulated conversation shown for demonstration.</span>
+        <button type="button" onClick={play} className={styles.replay}>
           ↻ Replay
         </button>
       </div>
-      <div className={styles.demoNote}>Simulated conversation shown for demonstration.</div>
     </div>
   );
 }
