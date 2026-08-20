@@ -15,20 +15,14 @@ export const AI_RECEPTIONIST_PHONE = {
 };
 
 /**
- * PLACEHOLDER — the real Cal.com scheduling link is NOT yet configured.
+ * Public Cal.com booking page. Every "Book a Demo" CTA opens this directly
+ * in a new tab rather than scrolling to the contact form.
  *
- * No booking URL exists anywhere in this repository or its environment, so
- * this is an obvious placeholder that must be supplied before launch. Every
- * "Book a Demo" CTA opens this URL directly (new tab) rather than scrolling
- * to the contact form.
- *
- * Replace with the real link, e.g. "https://cal.com/xensium/demo".
+ * This is a public scheduling link — never put a Cal.com API key here, or in
+ * any NEXT_PUBLIC_* variable: those are embedded in the browser bundle and
+ * would be readable by every visitor.
  */
-export const CAL_COM_BOOKING_URL = "https://cal.com/CAL_COM_BOOKING_URL_PLACEHOLDER";
-
-/** True while the booking URL is still the unconfigured placeholder. */
-export const IS_BOOKING_URL_PLACEHOLDER =
-  CAL_COM_BOOKING_URL.includes("CAL_COM_BOOKING_URL_PLACEHOLDER");
+export const CAL_COM_BOOKING_URL = "https://cal.com/haseeb-munawar-xyl64v/website";
 
 export const SITE_NAME = "Xensium AI";
 
