@@ -126,13 +126,17 @@ shim = 'var NAV_ACTIVE="%s",MOBILE_OPEN="%s",MOBILE_ACTIVE="%s";\n' % (NAV, MOPE
   function pick(){
     frame=0;
     if(Date.now()<lock) return;
+    /* Highlight a nav item only while the reader is actually inside that
+       section. Areas between or after the nav sections — the hero, the
+       marquees, the contact form, the footer — highlight nothing. */
     var hdr=document.querySelector('header');
     var line=(hdr?hdr.offsetHeight:68)+24, cur='';
-    ids.forEach(function(id){
-      var el=document.getElementById(id);
-      if(el&&el.getBoundingClientRect().top<=line) cur=id;
-    });
-    if(window.innerHeight+window.scrollY>=document.body.scrollHeight-4) cur=ids[ids.length-1];
+    for(var i=0;i<ids.length;i++){
+      var el=document.getElementById(ids[i]);
+      if(!el) continue;
+      var r=el.getBoundingClientRect();
+      if(r.top<=line&&r.bottom>line){ cur=ids[i]; break; }
+    }
     mark(cur);
   }
   window.addEventListener('scroll',function(){ if(!frame) frame=requestAnimationFrame(pick); },{passive:true});

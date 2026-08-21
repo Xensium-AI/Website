@@ -29,18 +29,20 @@ export default function Header() {
       frame = 0;
       if (Date.now() < lockUntil.current) return;
 
+      /* Highlight a nav item only while the reader is actually inside that
+         section. Areas between or after the nav sections — the hero, the
+         marquees, the contact form, the footer — highlight nothing. */
       const line = (document.querySelector("header")?.offsetHeight ?? 68) + 24;
       let current = "";
       for (const link of navLinks) {
         const el = document.getElementById(link.id);
         if (!el) continue;
-        if (el.getBoundingClientRect().top <= line) current = link.id;
+        const { top, bottom } = el.getBoundingClientRect();
+        if (top <= line && bottom > line) {
+          current = link.id;
+          break;
+        }
       }
-
-      // past the last section (footer/contact) keep the final item lit
-      const atBottom =
-        window.innerHeight + window.scrollY >= document.body.scrollHeight - 4;
-      if (atBottom) current = navLinks[navLinks.length - 1].id;
 
       setActiveId(current);
     };
