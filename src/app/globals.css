@@ -220,12 +220,20 @@ svg {
 
 .sectionTitle {
   font-weight: 800;
-  font-size: clamp(28px, 3.5vw, 44px);
-  line-height: 1.08;
+  /* sized so the longest section heading sits on a single line at desktop */
+  font-size: clamp(26px, 2.9vw, 37px);
+  line-height: 1.12;
   letter-spacing: -0.028em;
   margin: 0;
   color: var(--ink);
   text-wrap: balance;
+}
+
+/* headings run the full container width so they do not wrap early */
+@media (min-width: 1024px) {
+  .sectionTitle {
+    white-space: nowrap;
+  }
 }
 
 .sectionTitle--dark {

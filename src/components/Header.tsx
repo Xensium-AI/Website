@@ -20,34 +20,49 @@ export default function Header() {
   const lockUntil = useRef(0);
 
   useEffect(() => {
-    const sections = navLinks
-      .map((l) => document.getElementById(l.id))
-      .filter((el): el is HTMLElement => el !== null);
-    if (sections.length === 0) return;
+    /* Scroll-position spy rather than IntersectionObserver: it recomputes on
+       every frame of scrolling, so the highlight always reflects the section
+       under the header and never gets stuck on a stale entry. */
+    let frame = 0;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (Date.now() < lockUntil.current) return;
-        // Pick the entry nearest the top of the viewport that is intersecting.
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        if (visible[0]) setActiveId(visible[0].target.id);
-      },
-      {
-        // Bias the "active" band just below the sticky header.
-        rootMargin: "-20% 0px -70% 0px",
-        threshold: 0,
-      },
-    );
+    const pick = () => {
+      frame = 0;
+      if (Date.now() < lockUntil.current) return;
 
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
+      const line = (document.querySelector("header")?.offsetHeight ?? 68) + 24;
+      let current = "";
+      for (const link of navLinks) {
+        const el = document.getElementById(link.id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= line) current = link.id;
+      }
+
+      // past the last section (footer/contact) keep the final item lit
+      const atBottom =
+        window.innerHeight + window.scrollY >= document.body.scrollHeight - 4;
+      if (atBottom) current = navLinks[navLinks.length - 1].id;
+
+      setActiveId(current);
+    };
+
+    const onScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(pick);
+    };
+
+    pick();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   // Keep the clicked item highlighted, and close the mobile menu.
   const handleNavClick = useCallback((id: string) => {
-    lockUntil.current = Date.now() + 1200;
+    lockUntil.current = Date.now() + 900;
     setActiveId(id);
     setMenuOpen(false);
   }, []);

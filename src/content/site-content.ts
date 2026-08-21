@@ -86,7 +86,7 @@ export const callerLabel = "Incoming call · New caller";
 export const conversationTitle = "Booking an appointment";
 
 export const conversation: CallTurn[] = [
-  { who: "ai", text: "Thank you for calling [Business Name]. How can I help you today?" },
+  { who: "ai", text: "Thank you for calling Xensium AI. How can I help you today?" },
   { who: "caller", text: "Hi, I'd like to learn about your services and book an appointment." },
   {
     who: "ai",
@@ -182,27 +182,45 @@ export const capabilities: { icon: IconName; title: string; desc: string }[] = [
 export const LANGUAGE_COUNT = 63;
 
 export const languages = [
-  "English",
-  "Spanish",
-  "French",
+  "English (US)",
+  "English (UK)",
+  "English (India)",
+  "Spanish (Spain)",
+  "Spanish (Latin America)",
+  "French (France)",
+  "French (Canada)",
   "German",
-  "Portuguese",
   "Italian",
+  "Portuguese (Brazil)",
   "Dutch",
+  "Polish",
+  "Russian",
+  "Ukrainian",
+  "Turkish",
   "Arabic",
   "Hindi",
   "Urdu",
-  "Mandarin",
+  "Bengali",
+  "Tamil",
+  "Chinese (Mandarin)",
+  "Cantonese",
   "Japanese",
   "Korean",
-  "Russian",
-  "Turkish",
-  "Polish",
   "Vietnamese",
   "Thai",
-  "Swedish",
   "Indonesian",
-  "Tagalog",
+  "Malay",
+  "Filipino",
+  "Swedish",
+  "Norwegian",
+  "Danish",
+  "Finnish",
+  "Greek",
+  "Czech",
+  "Romanian",
+  "Hungarian",
+  "Persian",
+  "Swahili",
 ];
 
 export const howItWorksIntro =
@@ -282,7 +300,7 @@ export const faqs = [
     a: "Calendar and phone/VoIP integration are standard. CRM and other tools depend on the specific system: mainstream platforms with an open API are usually straightforward, and anything unusual or on-premise gets assessed during setup. Ask about your exact stack on the demo rather than assuming it is covered.",
   },
   {
-    q: "Can I customize its voice, personality, language, responses, and conversation flow?",
+    q: "Can you customize its voice, personality, language, responses, and conversation flow?",
     a: "Yes. You choose the voice, how it introduces itself, the tone it uses, and the language it answers in. Conversation flows are configured to your process — what it asks first, when it books, when it transfers. Changes after go-live are a configuration update, not a rebuild.",
   },
   {
@@ -290,7 +308,7 @@ export const faqs = [
     a: "It is configured to say it does not have that answer and fall back — transfer to a human, take a message, or offer a callback — rather than guess. Those calls are flagged in your transcripts so you can see what it could not handle and add the missing information. Expect a small number of these in the first weeks; that is normal and it is how the configuration gets tightened.",
   },
   {
-    q: "Can I keep my existing phone number, monitor calls, and access transcripts, summaries, and analytics?",
+    q: "Can you keep my existing phone number, and give me call monitoring, transcripts, summaries, and analytics?",
     a: "You keep your number — you forward it to Xensium, and you can stop forwarding at any time, which makes it low-risk to trial. Every call produces a recording, transcript, and summary, alongside volume and outcome reporting.",
   },
   {

@@ -52,18 +52,12 @@ export default function Contact() {
           </p>
           <div className={styles.channels}>
             <a href={AI_RECEPTIONIST_PHONE.href} className={styles.channel}>
-              <span className={styles.channelIcon} aria-hidden="true">
-                📞
-              </span>
               <span className={styles.channelLabel}>
                 <span className={styles.channelCaption}>Prefer to talk now? Call our AI receptionist</span>
                 <span className={styles.channelValue}>{AI_RECEPTIONIST_PHONE.display}</span>
               </span>
             </a>
             <a href={CAL_COM_BOOKING_URL} target="_blank" rel="noopener noreferrer" className={styles.channel}>
-              <span className={styles.channelIcon} aria-hidden="true">
-                📅
-              </span>
               <span className={styles.channelLabel}>
                 <span className={styles.channelCaption}>Rather see it live?</span>
                 <span className={styles.channelValue}>Book a demo</span>

@@ -9,9 +9,8 @@
 }
 
 .inner {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 0 var(--gutter);
+  width: 100%;
+  padding: 0 clamp(20px, 3vw, 44px);
   height: var(--nav-height);
   display: flex;
   align-items: center;
@@ -27,6 +26,8 @@
 .links {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
   gap: 2px;
   flex-wrap: nowrap;
   list-style: none;
