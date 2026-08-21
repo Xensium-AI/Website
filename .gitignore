@@ -26,3 +26,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# regenerated preview-snapshot scrape output (see artifacts/xensium-redesign/snap.js)
+/artifacts/xensium-redesign/snap.css
+/artifacts/xensium-redesign/snap-body.html
