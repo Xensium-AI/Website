@@ -27,7 +27,7 @@
 .links {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 2px;
   flex-wrap: nowrap;
   list-style: none;
   margin: 0;
@@ -37,10 +37,11 @@
 .link {
   display: block;
   position: relative;
+  white-space: nowrap;
   color: var(--text-slate);
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 600;
-  padding: 8px 14px;
+  padding: 8px 12px;
   border-radius: var(--r-pill);
   transition:
     color 0.16s ease,
@@ -235,7 +236,7 @@
   color: var(--blue-ink);
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1180px) {
   .links {
     display: none;
   }
@@ -249,7 +250,7 @@
   }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 720px) {
   .phone {
     display: none;
   }

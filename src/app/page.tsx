@@ -11,6 +11,7 @@ import Faq from "@/components/Faq";
 import FinalCta from "@/components/FinalCta";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { LANGUAGE_COUNT, languages, marqueeCategories } from "@/content/site-content";
 
 export default function Home() {
   return (
@@ -21,11 +22,23 @@ export default function Home() {
       <Header />
       <main id="main">
         <Hero />
-        <Marquee />
+        <Marquee
+          id="industries"
+          label="Built for businesses that live and die by the phone"
+          items={marqueeCategories}
+          variant="dark"
+          speed={20}
+        />
         <Problem />
         <Solution />
         <SeeItInAction />
         <Capabilities />
+        <Marquee
+          label={`Your AI receptionist speaks ${LANGUAGE_COUNT} languages, including`}
+          items={languages}
+          variant="light"
+          speed={38}
+        />
         <HowItWorks />
         <Results />
         <Faq />

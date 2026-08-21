@@ -13,6 +13,9 @@ export type IconName =
   | "calendar"
   | "clipboard"
   | "transfer"
+  | "help"
+  | "userPlus"
+  | "clock"
   | "check"
   | "menu"
   | "close";
@@ -53,6 +56,26 @@ const PATHS: Record<IconName, React.ReactNode> = {
       <path d="M4 15.5h9a4 4 0 0 0 4-4V5" />
       <path d="M13.6 8.6 17 5l3.4 3.6" />
       <path d="M4 19.5h7" />
+    </>
+  ),
+  help: (
+    <>
+      <circle cx="12" cy="12" r="8.4" />
+      <path d="M9.6 9.5a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2-2.4 3.5" />
+      <circle cx="12" cy="17" r="0.9" fill="currentColor" stroke="none" />
+    </>
+  ),
+  userPlus: (
+    <>
+      <circle cx="10" cy="8" r="3.4" />
+      <path d="M4 20a6 6 0 0 1 12 0" />
+      <path d="M18.4 8.6v5M15.9 11.1h5" />
+    </>
+  ),
+  clock: (
+    <>
+      <circle cx="12" cy="12" r="8.4" />
+      <path d="M12 7.4V12l3.1 1.9" />
     </>
   ),
   check: <path d="m5 12.8 4.4 4.4L19 7.6" />,

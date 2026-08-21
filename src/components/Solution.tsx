@@ -3,7 +3,7 @@ import { solutionCards } from "@/content/site-content";
 
 export default function Solution() {
   return (
-    <section id="product" className={styles.section}>
+    <section id="solution" className={styles.section}>
       <div className="container">
         <div className={styles.panel}>
           <div className={styles.copy}>

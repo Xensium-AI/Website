@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Logo from "./Logo";
 import Icon from "./Icon";
 import styles from "./Header.module.css";
@@ -15,6 +15,9 @@ import { AI_RECEPTIONIST_PHONE, CAL_COM_BOOKING_URL } from "@/config/site";
 export default function Header() {
   const [activeId, setActiveId] = useState<string>("");
   const [menuOpen, setMenuOpen] = useState(false);
+  /* While a click-initiated scroll is in flight the observer must not steal
+     the highlight from the item the reader just chose. */
+  const lockUntil = useRef(0);
 
   useEffect(() => {
     const sections = navLinks
@@ -24,6 +27,7 @@ export default function Header() {
 
     const observer = new IntersectionObserver(
       (entries) => {
+        if (Date.now() < lockUntil.current) return;
         // Pick the entry nearest the top of the viewport that is intersecting.
         const visible = entries
           .filter((e) => e.isIntersecting)
@@ -41,8 +45,9 @@ export default function Header() {
     return () => observer.disconnect();
   }, []);
 
-  // Close the mobile menu once an anchor is chosen.
+  // Keep the clicked item highlighted, and close the mobile menu.
   const handleNavClick = useCallback((id: string) => {
+    lockUntil.current = Date.now() + 1200;
     setActiveId(id);
     setMenuOpen(false);
   }, []);

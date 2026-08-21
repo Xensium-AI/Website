@@ -7,9 +7,10 @@ import type { IconName } from "@/components/Icon";
 
 /** Nav items. `id` is the section each link targets and scroll-spy watches. */
 export const navLinks = [
-  { label: "Product", href: "#product", id: "product" },
-  { label: "Solutions", href: "#solutions", id: "solutions" },
+  { label: "The problem", href: "#problem", id: "problem" },
+  { label: "Solution", href: "#solution", id: "solution" },
   { label: "Features", href: "#features", id: "features" },
+  { label: "How it works", href: "#how-it-works", id: "how-it-works" },
   { label: "Results", href: "#results", id: "results" },
   { label: "FAQs", href: "#faq", id: "faq" },
 ];
@@ -138,37 +139,70 @@ export const actionExamples = [
   },
 ];
 
+export const capabilitiesIntro =
+  "Not a phone tree. Not a chatbot. A real voice that talks to your callers, answers their questions, and books them in.";
+
 export const capabilities: { icon: IconName; title: string; desc: string }[] = [
   {
     icon: "phone",
-    title: "Answer & greet",
-    desc: "Picks up on the first ring with your custom greeting — every time, day or night.",
-  },
-  {
-    icon: "chat",
-    title: "Answer FAQs",
-    desc: "Hours, location, pricing, services — answered instantly from your business details.",
-  },
-  {
-    icon: "target",
-    title: "Qualify leads",
-    desc: "Asks the right questions and captures intent so only real opportunities reach your team.",
+    title: "Sounds like a real person",
+    desc: "Callers can't tell it's AI. It handles pauses, interruptions, and follow-ups like a human would.",
   },
   {
     icon: "calendar",
-    title: "Book & reschedule",
-    desc: "Checks availability and books, moves, or cancels appointments in your calendar.",
+    title: "Books appointments for you",
+    desc: "Checks your calendar in real time and locks in the slot before the caller hangs up.",
   },
   {
-    icon: "clipboard",
-    title: "Capture details",
-    desc: "Records names, numbers, and reasons for calling — logged and ready for follow-up.",
+    icon: "help",
+    title: "Answers your callers' questions",
+    desc: "Trained on your hours, services, pricing, and policies. Gives the right answer every single time.",
+  },
+  {
+    icon: "userPlus",
+    title: "Captures every lead",
+    desc: "Gets the caller's name, number, and reason for calling. Nothing slips through while you're busy.",
   },
   {
     icon: "transfer",
-    title: "Transfer & escalate",
-    desc: "Warm-transfers urgent calls to the right person, with context already gathered.",
+    title: "Transfers when it matters",
+    desc: "Big deal or urgent call? It sends it straight to you or your team, with full context. No cold handoffs.",
   },
+  {
+    icon: "clock",
+    title: "Works 24/7, 365 days",
+    desc: "Nights, weekends, holidays, lunch rushes. Every call answered on the first ring. It never takes a day off.",
+  },
+];
+
+/**
+ * Languages marquee. LANGUAGE_COUNT is the headline figure — confirm it
+ * matches what Xensium actually supports before launch.
+ */
+export const LANGUAGE_COUNT = 63;
+
+export const languages = [
+  "English",
+  "Spanish",
+  "French",
+  "German",
+  "Portuguese",
+  "Italian",
+  "Dutch",
+  "Arabic",
+  "Hindi",
+  "Urdu",
+  "Mandarin",
+  "Japanese",
+  "Korean",
+  "Russian",
+  "Turkish",
+  "Polish",
+  "Vietnamese",
+  "Thai",
+  "Swedish",
+  "Indonesian",
+  "Tagalog",
 ];
 
 export const howItWorksIntro =
@@ -224,28 +258,44 @@ export const results = [
 
 export const faqs = [
   {
-    q: "Will callers know they’re talking to AI?",
-    a: "Xensium introduces itself naturally and speaks conversationally. You choose how it identifies itself — many businesses simply present it as their front desk.",
+    q: "What is an AI receptionist, and how can it help my business?",
+    a: "It is a voice agent that answers your business line, holds a normal conversation with the caller, and completes the task — booking, answering a question, taking details, or routing the call. The practical benefit is coverage: calls that currently hit voicemail during a rush or after hours get answered instead. It is not a replacement for your team on complex work; it handles the front-desk traffic so your team does not have to.",
   },
   {
-    q: "How natural does it actually sound?",
-    a: "It listens, responds in real time, handles interruptions, and follows your business’s tone. The call demo above is representative of a real conversation.",
+    q: "Can the AI receptionist answer calls 24/7 and handle multiple calls at the same time?",
+    a: "Yes to both. It answers nights, weekends, and holidays, and it takes concurrent calls — ten people ringing at once all get picked up, with no hold queue. There is no per-seat limit the way there is with human staff.",
   },
   {
-    q: "Can it transfer calls to my team?",
-    a: "Yes. It warm-transfers to the right person or department and passes along everything it has already gathered, so callers never repeat themselves.",
+    q: "Can it book appointments, qualify leads, collect caller information, and follow up with customers?",
+    a: "It books and reschedules against your live calendar, asks your qualifying questions, and captures name, number, and reason for calling on every call. Follow-up depends on the channel: confirmation texts and emails are straightforward; multi-step outbound follow-up sequences are scoped during setup rather than switched on by default.",
   },
   {
-    q: "What happens outside business hours?",
-    a: "Xensium answers 24/7. After hours it can book appointments, capture leads, take messages, and flag anything urgent for the morning.",
+    q: "Can it answer questions about my business, services, pricing, and policies?",
+    a: "Yes, from the material you give us during setup — hours, locations, services, price ranges, and policies. It answers from that source rather than improvising. If your pricing is genuinely situational, we usually configure it to give a range and hand off rather than quote a number it cannot stand behind.",
   },
   {
-    q: "How long does setup take?",
-    a: "Most businesses go live within 14 days. You share how your front desk works, we configure and test it with you, then you forward your calls.",
+    q: "Can it transfer calls to my team or escalate conversations when human assistance is needed?",
+    a: "Yes. You define the rules — which topics, which hours, which person or department. It warm-transfers with the context it has already gathered, so the caller does not repeat themselves. You can also set it to take a message and flag it as urgent when nobody is available.",
   },
   {
-    q: "Is my data secure?",
-    a: "Calls and customer data are encrypted in transit and at rest, with access controls and retention settings you manage.",
+    q: "Can the AI receptionist integrate with my CRM, calendar, phone system, and other business tools?",
+    a: "Calendar and phone/VoIP integration are standard. CRM and other tools depend on the specific system: mainstream platforms with an open API are usually straightforward, and anything unusual or on-premise gets assessed during setup. Ask about your exact stack on the demo rather than assuming it is covered.",
+  },
+  {
+    q: "Can I customize its voice, personality, language, responses, and conversation flow?",
+    a: "Yes. You choose the voice, how it introduces itself, the tone it uses, and the language it answers in. Conversation flows are configured to your process — what it asks first, when it books, when it transfers. Changes after go-live are a configuration update, not a rebuild.",
+  },
+  {
+    q: "What happens if the AI doesn't know an answer or encounters an unexpected situation?",
+    a: "It is configured to say it does not have that answer and fall back — transfer to a human, take a message, or offer a callback — rather than guess. Those calls are flagged in your transcripts so you can see what it could not handle and add the missing information. Expect a small number of these in the first weeks; that is normal and it is how the configuration gets tightened.",
+  },
+  {
+    q: "Can I keep my existing phone number, monitor calls, and access transcripts, summaries, and analytics?",
+    a: "You keep your number — you forward it to Xensium, and you can stop forwarding at any time, which makes it low-risk to trial. Every call produces a recording, transcript, and summary, alongside volume and outcome reporting.",
+  },
+  {
+    q: "How much does an AI receptionist cost, how long does setup take, and is my customer data secure?",
+    a: "Setup takes about 14 days: a short intake call, then we build, train, and test it with you before you forward your number. Pricing depends on call volume and how much configuration and integration you need, so we quote after the demo rather than publishing a flat rate. On security, calls and customer data are encrypted in transit and at rest, with access controls and retention settings you manage — if you have specific compliance requirements, raise them on the demo so we can confirm what we can and cannot meet in writing.",
   },
 ];
 
@@ -253,7 +303,7 @@ export const footerColumns = [
   {
     heading: "Product",
     links: [
-      { label: "Product", href: "#product" },
+      { label: "The problem", href: "#problem" },
       { label: "Features", href: "#features" },
       { label: "Live demo", href: "#live" },
       { label: "Book a demo", href: "BOOKING" },
@@ -262,7 +312,7 @@ export const footerColumns = [
   {
     heading: "Company",
     links: [
-      { label: "Solutions", href: "#solutions" },
+      { label: "Solution", href: "#solution" },
       { label: "Results", href: "#results" },
       { label: "Contact", href: "#contact" },
       { label: "FAQs", href: "#faq" },

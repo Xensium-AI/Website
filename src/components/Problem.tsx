@@ -3,7 +3,7 @@ import { problemCards } from "@/content/site-content";
 
 export default function Problem() {
   return (
-    <section className={styles.section}>
+    <section id="problem" className={styles.section}>
       <div className="container">
         <div className={styles.intro}>
           <div className="eyebrow">The cost of a missed call</div>

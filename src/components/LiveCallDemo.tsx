@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import styles from "./LiveCallDemo.module.css";
 import Waveform from "./Waveform";
 import Icon from "./Icon";
@@ -13,6 +13,7 @@ import {
 
 const TURN_PACE_MS = 1400;
 const FIRST_TURN_DELAY_MS = 500;
+const REPLAY_PAUSE_MS = 3200;
 
 /**
  * Animated caller ↔ AI receptionist transcript.
@@ -51,6 +52,20 @@ export default function LiveCallDemo() {
       t += TURN_PACE_MS;
     });
     timers.current.push(setTimeout(() => setShowOutcome(true), t + 200));
+    // keep the call alive — replay from the top after a short pause
+    timers.current.push(setTimeout(() => play(), t + 200 + REPLAY_PAUSE_MS));
+  }, []);
+
+  /* The server renders the whole conversation so it is meaningful without
+     JavaScript. Reset to the first turn before the browser paints, so the
+     reader never sees the finished transcript flash into view. */
+  useLayoutEffect(() => {
+    const reduced =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+    setStep(0);
+    setShowOutcome(false);
   }, []);
 
   useEffect(() => {
@@ -68,7 +83,50 @@ export default function LiveCallDemo() {
   const typingIsAI = step < conversation.length && conversation[step].who === "ai";
 
   return (
-    <div className={styles.card}>
+    <div className={styles.wrap}>
+      <div className={styles.flow}>
+        <div className={styles.party}>
+          <span className={styles.callerAvatar} aria-hidden="true">
+            <svg viewBox="0 0 44 44" width="30" height="30" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="22" cy="15" r="6.5" />
+              <path d="M9 37a13 13 0 0 1 26 0" />
+            </svg>
+          </span>
+          <span className={styles.partyName}>Caller</span>
+        </div>
+
+        <div className={styles.link} aria-hidden="true">
+          <svg viewBox="0 0 160 40" preserveAspectRatio="none" className={styles.linkPath}>
+            <path
+              d="M2 30 C 40 30, 40 10, 80 10 S 120 30, 158 12"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeDasharray="7 8"
+            />
+          </svg>
+          <span className={styles.linkBadge}>
+            <span className={styles.linkDot} />
+            Live
+          </span>
+        </div>
+
+        <div className={styles.party}>
+          <span className={styles.aiAvatarLg} aria-hidden="true">
+            <svg viewBox="0 0 44 44" width="30" height="30" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="11" y="14" width="22" height="17" rx="5" />
+              <path d="M22 8.5v5.5M7.5 21v4M36.5 21v4" />
+              <circle cx="17.5" cy="22.5" r="1.6" fill="currentColor" stroke="none" />
+              <circle cx="26.5" cy="22.5" r="1.6" fill="currentColor" stroke="none" />
+              <path d="M18 27.5h8" />
+            </svg>
+          </span>
+          <span className={`${styles.partyName} ${styles.partyNameAi}`}>AI Receptionist</span>
+        </div>
+      </div>
+
+      <div className={styles.card}>
       <div className={styles.header}>
         <div className={styles.status}>
           <span className={styles.liveDot} aria-hidden="true" />
@@ -132,6 +190,7 @@ export default function LiveCallDemo() {
         <button type="button" onClick={play} className={styles.replay}>
           ↻ Replay
         </button>
+      </div>
       </div>
     </div>
   );
