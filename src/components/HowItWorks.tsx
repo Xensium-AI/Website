@@ -7,7 +7,7 @@ export default function HowItWorks() {
       <div className="container">
         <div className={styles.intro}>
           <div className="eyebrow">How it works</div>
-          <h2 className="sectionTitle">Live within 14 days - no technical setup.</h2>
+          <h2 className="sectionTitle sectionTitle--oneLine">Live within 14 days - no technical setup.</h2>
           <p className="sectionSub">{howItWorksIntro}</p>
         </div>
 

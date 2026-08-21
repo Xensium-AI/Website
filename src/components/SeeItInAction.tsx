@@ -8,7 +8,7 @@ export default function SeeItInAction() {
       <div className="container">
         <div className={styles.intro}>
           <div className="eyebrow">See it in action</div>
-          <h2 className="sectionTitle">See what happens when every call gets answered.</h2>
+          <h2 className="sectionTitle sectionTitle--oneLine">See what happens when every call gets answered.</h2>
           <p className={`sectionSub ${styles.sub}`}>
             From new inquiries to appointment requests, Xensium AI handles the conversations your
             business can&rsquo;t afford to miss.

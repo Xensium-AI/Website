@@ -229,10 +229,14 @@ svg {
   text-wrap: balance;
 }
 
-/* headings run the full container width so they do not wrap early */
+/* Only headings that span the full container may go single-line; headings
+   inside a narrow column must still wrap or they overflow. */
 @media (min-width: 1024px) {
-  .sectionTitle {
+  .sectionTitle--oneLine {
     white-space: nowrap;
+    /* a touch smaller than the default so the longest of these still fits
+       the container on one line */
+    font-size: clamp(26px, 2.62vw, 33px);
   }
 }
 

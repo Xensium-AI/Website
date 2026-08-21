@@ -7,7 +7,7 @@ export default function Problem() {
       <div className="container">
         <div className={styles.intro}>
           <div className="eyebrow">The cost of a missed call</div>
-          <h2 className="sectionTitle">Every unanswered call is a customer calling someone else.</h2>
+          <h2 className="sectionTitle sectionTitle--oneLine">Every unanswered call is a customer calling someone else.</h2>
           <p className={`sectionSub ${styles.sub}`}>
             Phones ring while your team is with customers, after you close, and all at once during a
             rush. The call you miss is often the one that mattered most.

@@ -8,7 +8,7 @@ export default function Results() {
       <div className={`container ${styles.inner}`}>
         <div className={styles.intro}>
           <div className="eyebrow eyebrow--dark">Results</div>
-          <h2 className="sectionTitle sectionTitle--dark">
+          <h2 className="sectionTitle sectionTitle--dark sectionTitle--oneLine">
             What happens when you stop missing calls.
           </h2>
           <p className="sectionSub sectionSub--dark">

@@ -1,9 +1,15 @@
 import styles from "./Marquee.module.css";
 
 /**
- * Seamless looping strip. Two identical groups sit side by side and the track
- * slides exactly one group width, so the list restarts with no gap or jump.
+ * Seamless looping strip.
+ *
+ * The track holds two identical halves and slides exactly one half width, so
+ * the list restarts with no jump. Each half repeats the items enough times to
+ * stay wider than any viewport — otherwise a short list leaves a visible gap
+ * after the last item before the loop comes round again.
  */
+const MIN_ITEMS_PER_HALF = 24;
+
 export default function Marquee({
   id,
   label,
@@ -14,12 +20,15 @@ export default function Marquee({
   id?: string;
   label: string;
   items: string[];
-  /** "dark" = navy band (industries), "light" = tinted band (languages). */
+  /** "dark" = industries strip, "light" = languages strip. */
   variant?: "dark" | "light";
   /** Seconds for one full cycle — lower is faster. */
   speed?: number;
 }) {
   const labelId = `${id ?? label.replace(/\s+/g, "-").toLowerCase()}-label`;
+  const passes = Math.max(1, Math.ceil(MIN_ITEMS_PER_HALF / items.length));
+  const half = Array.from({ length: passes }).flatMap(() => items);
+
   return (
     <section
       id={id}
@@ -32,11 +41,11 @@ export default function Marquee({
         </h2>
       </div>
       <div className={styles.mask}>
-        <div className={styles.track} style={{ animationDuration: `${speed}s` }}>
+        <div className={styles.track} style={{ animationDuration: `${speed * passes}s` }}>
           {[0, 1].map((copy) => (
             <div key={copy} className={styles.group} aria-hidden={copy === 1}>
-              {items.map((item) => (
-                <span key={item} className={styles.pill}>
+              {half.map((item, i) => (
+                <span key={`${item}-${i}`} className={styles.pill}>
                   {item}
                 </span>
               ))}
