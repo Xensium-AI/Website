@@ -6,12 +6,11 @@
  * swapped in here — no component changes required.
  */
 
-/** PLACEHOLDER — replace with the real AI receptionist number before launch. */
 export const AI_RECEPTIONIST_PHONE = {
   /** Human-readable number shown in the UI. */
-  display: "+1 (800) 555-0123",
+  display: "+1 (785) 706-4059",
   /** tel: link used by every "Call our AI receptionist" action. */
-  href: "tel:+18005550123",
+  href: "tel:+17857064059",
 };
 
 /**
